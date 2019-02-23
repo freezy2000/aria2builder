@@ -1,0 +1,47 @@
+aria2 - all in one command line download tool
+
+Many of as are using wget as a quick command line download tool to fetch data from the web using HTTP, HTTPS, and FTP. 
+We usually pick download mirror closest to our location in hope for better download speed, start wget and hoping for 
+the best. Aria2 download tool offers an alternative solution to wget with increased potential for greater download 
+speed by downloading from more than one source in the single session.
+
+Along the usual protocols supported by wget aria2 also offers download resume and additional download options using 
+torrents, magnet URIs and metalinks. This article explores some aria2 download techniques which potentially could 
+ease wget's work load.
+
+Aria2 installation
+First if you have not done so yet install aria2 package from your system’s repository such us:
+
+Centos:
+# yum install aria2
+Ubuntu:
+# apt-get install aria2
+You can also install aria2 from a source code downloaded from aria2 home page.
+
+Aria2 basic download
+Same as it is with wget aria2 also offers one argument command line download. Lets try download such us:
+$ aria2c ftp://local1/linux-distro.iso
+
+Download from more sources
+To speed up your download you can supply aria2 with more than one source of the same file:
+$ aria2c ftp://local1/linux-distro.iso http://local2/linux-distro.iso
+
+Torrent download
+Downloading data using torrents is simple as downloading data via http or ftp. If you alredy have a torrent file which 
+you want to use to fetch your data, simply suppy it to aria2 as a command line argument:
+$ aria2c linux-dist.torrent
+$ aria2c http://local/linux-dist.torrent
+$ aria2c --follow-torrent=mem http://local/linux-dist.torrent
+
+Download using metalink
+Metalink is a file which contains all possible sources for data to be downloaded. Which means that instead supplying 
+aria2 with a multiple sources we need to supply just a single metalink URL or metalink file. For example, you can 
+download Ubuntu TLS Linux ISO using metalink:
+aria2c http://releases.ubuntu.com/releases/10.04/ubuntu-10.04-desktop-i386.metalink
+
+Download via torrent magnet
+As you may have already guessed the syntax to download via torrent magnets is the same as it was in previous examples. 
+All what needs to be done is to supply aria2 with a magnet link:
+aria2c magnet:?xt=urn:btih:1e99d95f1764644a86a8e99bfd80c ...
+
+
